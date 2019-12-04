@@ -105,4 +105,10 @@ class BoardRepositoryTest {
         results.forEach(board -> System.out.println(board));
     }
 
+    @Test
+    public void 특정_숫자보다_큰_키값_정렬되는지(){
+        Collection<Board> results = boardRepository.findByIdGreaterThanOrderByIdDesc(90L);
+        results.forEach(board -> System.out.println(board));
+    }
+
 }

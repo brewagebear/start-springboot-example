@@ -3,6 +3,7 @@ package com.startspringboot.example.repository;
 import com.startspringboot.example.domain.Board;
 import org.springframework.data.repository.CrudRepository;
 
+import java.awt.print.Pageable;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,4 +32,7 @@ public interface BoardRepository extends CrudRepository<Board, Long> {
 
     // title LIKE % ? % AND PK > ?
     public Collection<Board> findByTitleContainingAndIdGreaterThan(String title, Long id);
+
+    // id > ? ORDER BY id DESC
+    public Collection<Board> findByIdGreaterThanOrderByIdDesc(Long id);
 }
