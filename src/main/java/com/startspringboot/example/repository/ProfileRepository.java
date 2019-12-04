@@ -1,4 +1,7 @@
 package com.startspringboot.example.repository;
 
-public interface ProfileRepository {
+import com.startspringboot.example.domain.Profile;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ProfileRepository extends CrudRepository<Profile, Long> {
 }

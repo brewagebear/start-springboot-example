@@ -18,7 +18,7 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "bno")
+    @Column(name = "BNO")
     private Long id;
 
     private String title;

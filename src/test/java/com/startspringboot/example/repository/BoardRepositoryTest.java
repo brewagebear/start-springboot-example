@@ -1,14 +1,22 @@
 package com.startspringboot.example.repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.startspringboot.example.domain.Board;
+import com.startspringboot.example.domain.QBoard;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -96,19 +104,91 @@ class BoardRepositoryTest {
     @Test
     public void 작성자_이름에_포함_값으로_조회가_잘되는지(){
         Collection<Board> results = boardRepository.findByWriterContaining("05");
-        results.forEach(board -> System.out.println(board));
+        results.forEach(System.out::println);
     }
 
     @Test
     public void 제목과_제목_키값으로_조회가_잘되는지(){
         Collection<Board> results = boardRepository.findByTitleContainingAndIdGreaterThan("5", 50L);
-        results.forEach(board -> System.out.println(board));
+        results.forEach(System.out::println);
     }
 
     @Test
     public void 특정_숫자보다_큰_키값_정렬되는지(){
-        Collection<Board> results = boardRepository.findByIdGreaterThanOrderByIdDesc(90L);
-        results.forEach(board -> System.out.println(board));
+        Pageable paging = PageRequest.of(0, 10);
+
+        Collection<Board> results = boardRepository.
+                                    findByIdGreaterThanOrderByIdDesc(0L, paging);
+        results.forEach(System.out::println);
     }
 
+    /*
+    @Test
+    public void 특정_숫자보다_큰_값이_정렬되는지(){
+        Pageable paging = PageRequest.of(0, 10, Sort.Direction.DESC, "id");
+
+        Collection<Board> results = boardRepository.
+                findByIdGreaterThan(0L, paging);
+        results.forEach(board -> System.out.println(board));
+    }
+     */
+
+    @Test
+    public void 키_값_페이징_및_정렬이_잘되는지(){
+        Pageable paging = PageRequest.of(0, 10, Sort.Direction.DESC, "id");
+
+        Page<Board> result = boardRepository.findByIdGreaterThan(0L, paging);
+        System.out.println("PAGE SIZE :" + result.getSize());
+        System.out.println("TOTAL PAGES :" + result.getTotalPages());
+        System.out.println("TOTAL COUNT :" + result.getTotalElements());
+        System.out.println("NEXT :" + result.nextPageable());
+
+        List<Board> list = result.getContent();
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    public void 제목에_대한_검색이_잘되는지(){
+        boardRepository.findByTitle2("17").
+                forEach(System.out::println);
+    }
+
+    @Test
+    public void 콘텐츠를_제외한_컬럼을_제목_검색을_통해서_잘되는지(){
+        boardRepository.findByTitle2("17")
+                .forEach(arr -> System.out.println(Arrays.toString(arr)));
+    }
+
+    @Test
+    public void 페이징_테스트_처리(){
+        Pageable pageable = PageRequest.of(0, 10);
+        boardRepository.findByPage(pageable).forEach(System.out::println);
+    }
+
+    @Test
+    public void Predicate_생성_및_테스트(){
+
+        String type    = "t";
+        String keyword = "17";
+
+        BooleanBuilder builder = new BooleanBuilder();
+
+        QBoard board = QBoard.board;
+
+        builder.and(board.title.like("%" + keyword + "%"));
+
+        // id > 0
+        builder.and(board.id.gt(0L));
+
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Board> result = boardRepository.findAll(builder, pageable);
+
+        System.out.println("PAGE SIZE :" + result.getSize());
+        System.out.println("TOTAL PAGES :" + result.getTotalPages());
+        System.out.println("TOTAL COUNT :" + result.getTotalElements());
+        System.out.println("NEXT :" + result.nextPageable());
+
+        List<Board> list = result.getContent();
+        list.forEach(System.out::println);
+    }
 }
