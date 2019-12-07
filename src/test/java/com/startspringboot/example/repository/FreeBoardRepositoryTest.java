@@ -92,11 +92,13 @@ class FreeBoardRepositoryTest {
         });
     }
 
-    @Test
-    public void 제목과_댓글의_수가_같이_나오는_것을_테스트(){
-        Pageable page = PageRequest.of(0, 10, Sort.Direction.DESC, "bno");
-        boardRepository.findByBnoGreaterThan(0L, page).forEach(board->{
-            log.info(board.getBno() +": " + board.getTitle() + ": " + board.getReplies().size());
+
+    @Transactional
+        @Test
+        public void 제목과_댓글의_수가_같이_나오는_것을_테스트(){
+            Pageable page = PageRequest.of(0, 10, Sort.Direction.DESC, "bno");
+            boardRepository.findByBnoGreaterThan(0L, page).forEach(board->{
+                log.info(board.getBno() +": " + board.getTitle() + ": " + board.getReplies().size());
         });
     }
 

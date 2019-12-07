@@ -26,7 +26,9 @@ public class FreeBoard {
     private String writer;
     private String content;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "board",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     private List<FreeBoardReply> replies;
 
     @CreationTimestamp
