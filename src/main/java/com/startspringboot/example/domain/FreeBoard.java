@@ -26,9 +26,17 @@ public class FreeBoard {
     private String writer;
     private String content;
 
+
+    /***
+     * FetchType.EAGER의 경우 DB 성능이 문제 될 수가 있다.
+     * 따라서, 이를 해결하기위해서는 @Query를 이용해서 조인 처리하는 것이다.
+     */
+    //    @OneToMany(mappedBy = "board",
+    //            cascade = CascadeType.ALL,
+    //            fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "board",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
+            fetch = FetchType.LAZY)
     private List<FreeBoardReply> replies;
 
     @CreationTimestamp

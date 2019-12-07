@@ -14,6 +14,7 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -92,7 +93,7 @@ class FreeBoardRepositoryTest {
         });
     }
 
-
+    //이 애노테이션은 지연 로딩을 이용하면서 댓글을 가져오고 싶을때, 사용할 수 있다.
     @Transactional
         @Test
         public void 제목과_댓글의_수가_같이_나오는_것을_테스트(){
@@ -100,6 +101,14 @@ class FreeBoardRepositoryTest {
             boardRepository.findByBnoGreaterThan(0L, page).forEach(board->{
                 log.info(board.getBno() +": " + board.getTitle() + ": " + board.getReplies().size());
         });
+    }
+
+    @Test
+    public void 지연로딩과_애노테이션을_이용한_조인처리_테스트(){
+        Pageable page = PageRequest.of(0, 10, Sort.Direction.DESC, "bno");
+
+        boardRepository.getPage(page).forEach(arr ->
+                log.info(Arrays.toString(arr)));
     }
 
 }
