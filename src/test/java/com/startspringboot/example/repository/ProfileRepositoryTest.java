@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -66,5 +67,4 @@ class ProfileRepositoryTest {
         List<Object[]> result = memberRepository.getMemberWithCurrentProfile(1L);
         result.forEach(arr -> System.out.println(Arrays.toString(arr)));
     }
-
 }
