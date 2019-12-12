@@ -1,7 +1,9 @@
-package com.startspringboot.example.repository;
+package com.startspringboot.example.repository.old;
 
-import com.startspringboot.example.domain.FreeBoard;
-import com.startspringboot.example.domain.FreeBoardReply;
+import com.startspringboot.example.domain.old.FreeBoard;
+import com.startspringboot.example.domain.old.FreeBoardReply;
+import com.startspringboot.example.repository.old.FreeBoardReplyRepository;
+import com.startspringboot.example.repository.old.FreeBoardRepository;
 import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

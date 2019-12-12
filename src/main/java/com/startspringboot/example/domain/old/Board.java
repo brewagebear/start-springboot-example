@@ -1,4 +1,4 @@
-package com.startspringboot.example.domain;
+package com.startspringboot.example.domain.old;
 
 import lombok.Getter;
 import lombok.Setter;

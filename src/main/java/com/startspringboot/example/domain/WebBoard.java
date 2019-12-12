@@ -1,6 +1,5 @@
 package com.startspringboot.example.domain;
 
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,28 +12,22 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-@ToString(exclude = "board")
 @Entity
-// 인덱스 설계
-@Table(name = "tbl_free_replies",
-        indexes = {
-        @Index(unique = false,
-                columnList = "board_bno")
-        })
-@EqualsAndHashCode(of = "rno")
-public class FreeBoardReply {
-
+@Table(name = "TBL_WEBBAORD")
+@EqualsAndHashCode
+@ToString
+public class WebBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rno;
-    private String reply;
-    private String replier;
+    private Long bno;
+    private String title;
 
-    @ManyToOne
-    private FreeBoard board;
+    private String writer;
+
+    private String content;
 
     @CreationTimestamp
-    private Timestamp replydate;
+    private Timestamp regdate;
     @UpdateTimestamp
     private Timestamp updatedate;
 }

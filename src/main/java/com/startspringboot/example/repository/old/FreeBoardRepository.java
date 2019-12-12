@@ -1,6 +1,6 @@
-package com.startspringboot.example.repository;
+package com.startspringboot.example.repository.old;
 
-import com.startspringboot.example.domain.FreeBoard;
+import com.startspringboot.example.domain.old.FreeBoard;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

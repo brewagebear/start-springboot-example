@@ -1,7 +1,9 @@
-package com.startspringboot.example.repository;
+package com.startspringboot.example.repository.old;
 
-import com.startspringboot.example.domain.Member;
-import com.startspringboot.example.domain.Profile;
+import com.startspringboot.example.domain.old.Member;
+import com.startspringboot.example.domain.old.Profile;
+import com.startspringboot.example.repository.old.MemberRepository;
+import com.startspringboot.example.repository.old.ProfileRepository;
 import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;

@@ -1,7 +1,8 @@
-package com.startspringboot.example.repository;
+package com.startspringboot.example.repository.old;
 
-import com.startspringboot.example.domain.PDSBoard;
-import com.startspringboot.example.domain.PDSFile;
+import com.startspringboot.example.domain.old.PDSBoard;
+import com.startspringboot.example.domain.old.PDSFile;
+import com.startspringboot.example.repository.old.PDSBoardRepository;
 import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,8 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

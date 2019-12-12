@@ -1,8 +1,9 @@
-package com.startspringboot.example.repository;
+package com.startspringboot.example.repository.old;
 
 import com.querydsl.core.BooleanBuilder;
-import com.startspringboot.example.domain.Board;
+import com.startspringboot.example.domain.old.Board;
 import com.startspringboot.example.domain.QBoard;
+import com.startspringboot.example.repository.old.BoardRepository;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
