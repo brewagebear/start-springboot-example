@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class SampleController {
@@ -17,4 +19,15 @@ public class SampleController {
                        new Timestamp(System.currentTimeMillis()));
        model.addAttribute("vo", vo);
    }
+
+    @GetMapping("/sample3")
+    public void sample3(Model model){
+        List<MemberVO> list = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++){
+            list.add(new MemberVO(123, "U0" + i ,"P0" + i, "홍길동" + i,
+                    new Timestamp(System.currentTimeMillis())));
+        }
+        model.addAttribute("list", list);
+    }
 }
