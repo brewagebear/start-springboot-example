@@ -12,9 +12,9 @@ public class PageVO {
     private int page;
     private int size;
 
-    public PageVO(int page, int size) {
-        this.page = page;
-        this.size = size;
+    public PageVO() {
+        this.page = 1;
+        this.size = DEFAULT_SIZE;
     }
 
     public int getPage() {
