@@ -54,12 +54,35 @@ class WebBoardRepositoryTest {
     }
 
     @Test
-        public void 검색_기능있는_페이징처리가_되는지(){
+        public void 제목검색_기능있는_페이징처리가_되는지(){
 
         Pageable pageable = PageRequest.of(0, 20, Sort.Direction.DESC, "bno");
 
         Page<WebBoard> result = webBoardRepository.findAll(
                 webBoardRepository.makePredicate("t", "10"), pageable);
+        log.info("PAGE : " + result.getPageable());
+        log.info("----------------");
+        result.getContent().forEach(webBoard -> log.info(""  + webBoard));
+    }
+
+    @Test
+    public void 내용검색_기능있는_페이징처리가_되는지(){
+
+        Pageable pageable = PageRequest.of(0, 20, Sort.Direction.DESC, "bno");
+
+        Page<WebBoard> result = webBoardRepository.findAll(
+                webBoardRepository.makePredicate("t", "10"), pageable);
+        log.info("PAGE : " + result.getPageable());
+        log.info("----------------");
+        result.getContent().forEach(webBoard -> log.info(""  + webBoard));
+    }
+
+    @Test
+    public void 글쓴이검색_기능있는_페이징처리가_되는지(){
+        Pageable pageable = PageRequest.of(0, 20, Sort.Direction.DESC, "bno");
+
+        Page<WebBoard> result = webBoardRepository.findAll(
+                webBoardRepository.makePredicate("w", "suer10"), pageable);
         log.info("PAGE : " + result.getPageable());
         log.info("----------------");
         result.getContent().forEach(webBoard -> log.info(""  + webBoard));

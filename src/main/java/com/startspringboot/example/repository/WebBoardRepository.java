@@ -31,6 +31,9 @@ public interface WebBoardRepository extends CrudRepository<WebBoard, Long>, Quer
                 builder.and(board.title.like("%" + keyword + "%"));
                 break;
             case "c":
+                builder.and(board.content.like("%" + keyword + "%"));
+                break;
+            case "w":
                 builder.and(board.writer.like("%" + keyword + "%"));
                 break;
         }
