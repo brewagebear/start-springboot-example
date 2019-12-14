@@ -7,9 +7,32 @@
         <div class="panel-heading">List Page</div>
         <div class="panel-body">
             <p>[[${result}]]</p>
-            <div>[[${result.content}]]</div>
+            <div th:with="result=${result.result}">
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="board:${result.content}">
+                        [[${board}]]
+                    </li>
+                </ul>
+            </div>
         </div>
+        <!--   Pagination   -->
+        <nav>
+            <div>
+                <ul class="pagination">
+                    <li class="page-item" th:if="${result.prevPage}">
+                        <a href="#">PREV [[${result.prevPage.pageNumber} + 1]]</a>
+                    </li>
+                    <li th:each="p:${result.pageList}">
+                        <a href="#">[[${p.pageNumber} + 1]]</a>
+                    </li>
+                    <li class="page-item" th:if="${result.nextPage}">
+                        <a href="#">NEXT [[${result.nextPage.pageNumber} + 1]]</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
+
 
     <th:block layout:fragment="script">
         <script th:inline="javascript"></script>
