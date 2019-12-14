@@ -1,7 +1,6 @@
-package com.startspringboot.example.domain;
+package com.startspringboot.example.domain.old;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @Getter

@@ -1,6 +1,6 @@
-package com.startspringboot.example.repository;
+package com.startspringboot.example.repository.old;
 
-import com.startspringboot.example.domain.Member;
+import com.startspringboot.example.domain.old.Member;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

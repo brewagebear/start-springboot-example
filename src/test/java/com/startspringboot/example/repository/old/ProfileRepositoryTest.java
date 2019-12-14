@@ -1,7 +1,9 @@
-package com.startspringboot.example.repository;
+package com.startspringboot.example.repository.old;
 
-import com.startspringboot.example.domain.Member;
-import com.startspringboot.example.domain.Profile;
+import com.startspringboot.example.domain.old.Member;
+import com.startspringboot.example.domain.old.Profile;
+import com.startspringboot.example.repository.old.MemberRepository;
+import com.startspringboot.example.repository.old.ProfileRepository;
 import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -66,5 +68,4 @@ class ProfileRepositoryTest {
         List<Object[]> result = memberRepository.getMemberWithCurrentProfile(1L);
         result.forEach(arr -> System.out.println(Arrays.toString(arr)));
     }
-
 }
