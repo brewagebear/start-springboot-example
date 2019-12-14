@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.function.Supplier;
+
 
 @Controller
 @RequestMapping("/board/")
@@ -31,11 +33,13 @@ public class WebBoardController {
         Page<WebBoard> result = webBoardRepository.findAll(
                 webBoardRepository.makePredicate(vo.getType(), vo.getKeyword()), page);
 
-        log.info("" + page);
-        log.info("" + result);
-        log.info("TOTAL PAGE NUMBER : " + result.getTotalPages());
-
+    //        log.info("" + page);
+    //        log.info("" + result);
+    //        log.info("TOTAL PAGE NUMBER : " + result.getTotalPages());
+    //        log.info(vo.getType());
+    //        log.info(vo.getKeyword());
         model.addAttribute("result", new PageMaker(result));
+        model.addAttribute("pageVO", vo);
     }
 }
 
